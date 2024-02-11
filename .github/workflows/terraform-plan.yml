@@ -3,7 +3,7 @@ name: 'terraform-plan'
 
 # run plan on demand
 on:
-    workflow_despatch:
+    workflow_dispatch:
         inputs:
             branch:
               description: 'Branch to run the plan on'
