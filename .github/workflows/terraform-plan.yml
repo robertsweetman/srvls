@@ -9,9 +9,9 @@ on:
               description: 'Branch to run the plan on'
               required: true
               default: 'main' # Default branch, you can change it as needed
-env:
-    AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-    AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+# env: # removed as un-neccessary
+#     AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+#     AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
 
 jobs:
     terraform_plan:
