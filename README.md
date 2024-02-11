@@ -17,10 +17,10 @@ Then run the usual `terraform init\plan\apply` and go from there.
 
 ## ToDo
 
-1. Github action to pull secrets from Gihub secret store
-2. Github action to run terraform
+1. Github action to run terraform apply
+2. Set-Output warning in existing plan needs to be killed by supplying this to 'apply' properly
 3. Create a very basic set of terraform resources to deploy something
-4. Create a very basic 'hello world' lambda function in Rust & deploy it
+4. Create a very basic 'hello world' lambda function in Rust & deploy it -> Website? Url?
 5. Look into how to create tests for this
 6. Write up troubleshooting steps, debug goes where?
 7. Monitoring
