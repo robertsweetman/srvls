@@ -1,0 +1,44 @@
+
+name: 'terraform-plan'
+
+# run plan on demand
+on:
+    workflow_despatch:
+        inputs:
+            branch:
+              description: 'Branch to run the plan on'
+              required: true
+              default: 'main' # Default branch, you can change it as needed
+env:
+    AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+    AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+
+jobs:
+    terraform_plan:
+        runs-on: ubuntu-latest
+        environment: production # Change this to your GitHub environment name if needed
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            ref: "${{ github.event.inputs.branch }}"
+    
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v1
+          with:
+            terraform_version: 1.7.3 # Specify your Terraform version here
+    
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+            aws-secret-access-key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+            region: eu-west-2 # Change to your AWS region
+    
+        - name: Terraform Init
+          run: terraform init
+
+        - name: Terraform plan
+          run: terraform plan  
+
+
